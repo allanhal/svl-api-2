@@ -1,12 +1,16 @@
 const express = require("express");
 const db = require ('./config/db')
 const app = express();
-const livros = require ('./models/Livros')
+
+const routes = require('./routes/index')
+ routes(app)
+
 
 db.on('error', console.log.bind('Erro ao conectar com o banco!'))
 db.once('open',() =>{
 console.log('Conexão realizada com sucesso!!')
 })
+
 
 const port = 5000;
 
@@ -19,11 +23,9 @@ app.listen(port, () => {
 });
 
 
-app.get('/livros', (req,res)=>{
-livros.find((error, livros)=>{
-  res.status(200).json(livros)
-})
-})
-//app.get('/livros/id',(req,res)=>{
-//findById()
-//})
+// app.get('/livros', (req,res)=>{
+// livros.find((error, livros)=>{
+//   if(err)res.status(400);
+//   res.status(200).json(livros)
+// })
+// })

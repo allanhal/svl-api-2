@@ -5,3 +5,8 @@
 
 ## Clone do projeto 
 --git clone
+
+# Criando as rotas
+## Criar uma pasta na raiz
+/controllers
+# Criar o arquivo LivrosController.js
