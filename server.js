@@ -1,10 +1,10 @@
 const express = require("express");
 const db = require ('./config/db')
-const app = express();
+const app = express()
+const port = 5000;
 
 const routes = require('./routes/index')
  routes(app)
-
 
 db.on('error', console.log.bind('Erro ao conectar com o banco!'))
 db.once('open',() =>{
@@ -12,16 +12,9 @@ console.log('Conexão realizada com sucesso!!')
 })
 
 
-const port = 5000;
-
-app.get("/", (req, res) => {
-  res.send("Servidor subiu!");
-});
-
-app.listen(port, () => {
-  console.log(`Servidor rodando ${port}`);
-});
-
+// app.get("/", (req, res) => {
+//   res.send("Servidor subiu!");
+// });
 
 // app.get('/livros', (req,res)=>{
 // livros.find((error, livros)=>{
@@ -29,3 +22,8 @@ app.listen(port, () => {
 //   res.status(200).json(livros)
 // })
 // })
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${5000}`);
+});
+
