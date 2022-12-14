@@ -98,7 +98,7 @@ collection name: livros
 
 5. Importar o arquivo db.js no server. js
 
--> buscar processo pela porta pelo 
+ buscar processo pela porta pelo 
 
 pid netstat -ano | findstr :<PORT>
 
