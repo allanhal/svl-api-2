@@ -3,7 +3,7 @@ const livros = require("../models/Livros");
 class LivroController {
   static findAll = (req, res) => {
     livros.find((err, livros) => {
-      console.log("find", livros);
+      //console.log("find", livros);
       res.status(200).json(livros);
     });
   };
@@ -14,12 +14,12 @@ class LivroController {
     livros.findById(id, (err, livros) => {
       //tratar o erro ou o sucesso , baseado na função de callback utilizando os parametros err, livros
       if (err) {
-        console.log("1");
+        //console.log("1");
         res
           .status(404)
           .send({ message: "Livro não encontrado", erro: err.message });
       } else {
-        console.log("2");
+        //console.log("2");
         res.status(200).json(livros);
       }
     });
@@ -40,18 +40,35 @@ class LivroController {
       }
     });
   };
-  static deleteBook = (req,res)=>{
-    const id = req.params.id
+  static deleteBook = (req, res) => {
+    const id = req.params.id;
 
-    livros.findByIdAndDelete( id, (err)=>{
-        if(err){
-            res
+    livros.findByIdAndDelete(id, (err) => {
+      if (err) {
+        res.status(404).send({
+          message: "Não foi possivel deletar!Livro não encontrado",
+          erro: err.message,
+        });
+      } else {
+        res.status(200).json("Deletado");
+      }
+    });
+  };
+  static updateBook = (req, res) => {
+    let id = req.params.id;
+
+    console.log(req.body);
+    
+    livros.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+      if (err) {
+        res
           .status(404)
-          .send({ message: "Não foi possivel deletar!Livro não encontrado", erro: err.message })
-        }else{;
-        res.status(200).json("Deletado");}
-    })
-  }
+          .send({ message: "Não foi possivel atualizar", erro: err.message });
+      } else {
+        res.status(200).json("O livro foi atualizado");
+      }
+    });
+  };
 }
 
 module.exports = LivroController;

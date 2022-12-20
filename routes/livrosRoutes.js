@@ -8,5 +8,6 @@ routes
   .post("/livro", LivroController.createBook)
   .get("/livro/:id", LivroController.getBookById)
   .delete("/livro/:id", LivroController.deleteBook)
+  .put("/livro/:id", LivroController.updateBook);
 
 module.exports = routes;
