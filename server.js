@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require("./dbConfig");
 const app = express();
-const port = 5000;
+const port = 10000;
 
 const routes = require("./routes/index");
 routes(app);
@@ -23,5 +23,5 @@ db.once("open", () => {
 // })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${5000}`);
+  console.log(`Example app listening on port ${port}`);
 });
